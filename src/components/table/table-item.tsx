@@ -36,7 +36,7 @@ export default function TableItem({ userName, registrationDate }: TableItemProps
                 </Td>
                 <Td>
                     <Button
-                        as="a"
+                        // as="a"
                         leftIcon={<Icon
                             as={RiPencilLine}
                             fontSize={18} />}

@@ -15,7 +15,7 @@ import {
 import SideBar from '../../components/side-bar'
 import Header from '../../components/header'
 import { RiAddCircleFill, RiAddLine, RiPencilLine } from 'react-icons/ri'
-import TableItem from './table-item'
+import TableItem from '../../components/table/table-item'
 import Pagination from '../../components/pagination'
 
 export default function Usuarios() {
