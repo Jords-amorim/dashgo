@@ -5,12 +5,11 @@ import { RiNotification3Line, RiUserAddLine } from 'react-icons/ri'
 export default function Notifications() {
     return (
         <HStack
-            spacing={8}
-            align="center"
-            ml="auto"
-            pr="8"
+            spacing={["6","8"]}
+            pr={["6","8"]}
+            mx={["6","8"]}
             py="2"
-            mr={5}
+            mr={[1, 5]}
             color="gray.200"
             borderRightWidth={2}
             borderColor="teal.500"

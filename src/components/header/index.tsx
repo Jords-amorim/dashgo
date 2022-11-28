@@ -1,11 +1,17 @@
 import React from 'react'
-import { Flex, Text, Icon, Input, Box, HStack, Avatar, Link } from '@chakra-ui/react'
-import { RiNotification3Line, RiSearchLine, RiUserAddLine } from 'react-icons/ri'
+import { Flex, Text, Icon, Link, useBreakpointValue, IconButton } from '@chakra-ui/react'
 import SearchInput from './search-input'
 import Profile from './profile'
 import Notifications from './notifications'
+import { useSideBarDrawer } from '../../context/sideBarDrawerContext'
+import { RiMenuLine } from 'react-icons/ri'
 
 export default function Header() {
+    const {onOpen} = useSideBarDrawer()
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        lg: true,
+    })
     return (
         <Flex
             w="100%"
@@ -15,23 +21,37 @@ export default function Header() {
             px="4"
             align="center"
             mx="auto"
+            justify="space-between"
         >
+            {!isWideVersion ? (
+                <IconButton
+                  aria-label='OpenNavigation'
+                  icon={<Icon/>}
+                  as={RiMenuLine}
+                  variant="unstyled"
+                  onClick={onOpen}
+                  mr="2"
+                  cursor="pointer"
+                >
+                    
+                </IconButton>
+            ) : null}
             <Link href="/dashboard">
 
                 <Text
-                    fontSize="3xl"
+                    fontSize={["2xl", "3xl"]}
                     fontWeight="bold"
                     letterSpacing="tight"
-                    w="64"
+                    w={["50", "64"]}
                 >
                     Dashgo
                     <Text as="span" color="teal.500" ml={2} fontSize="5xl" >.</Text>
                 </Text>
             </Link>
-            
-            <SearchInput />
+            {isWideVersion ? (  <SearchInput />) : null}
+          
             <Notifications />         
-            <Profile />
+            <Profile showProfileData={isWideVersion}/>
         </Flex>
     )
 }
