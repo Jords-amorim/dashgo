@@ -1,7 +1,33 @@
 import { Flex, Button, Stack, } from '@chakra-ui/react'
-import InputForm from '../components/form/InputForm'
+
+import { SubmitHandler, useForm } from 'react-hook-form'
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup'
+import { InputForm } from '../components/form/InputForm';
+
+type SignInFormData = {
+  email: string;
+  password: string;
+}
+
+const signInFormSchema = yup.object({
+  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+  password: yup.string().required('Senha obrigatória'),
+});
 
 export default function SignIn() {
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signInFormSchema)
+  })
+
+  const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
+    await new Promise(resolve => setTimeout(resolve, 2000)) 
+    console.log('values', values)
+  }
+  
+  const { errors } = formState
+  console.log('errors', errors)
+
   return (
     <Flex
       w="100vw"
@@ -17,12 +43,33 @@ export default function SignIn() {
         p="8" // 32px
         borderRadius={8} // 8px
         flexDir="column"
+        onSubmit={handleSubmit(handleSignIn)}
       >
         <Stack spacing={4}>
-          <InputForm label="E-mail" name="email" type="email"/>
-          <InputForm label="Senha" name="password" type="password"/>
+         <InputForm
+            name="email"
+            label="E-mail"
+            type="email" 
+            {...register('email')}
+            error={errors.email}
+          />
+         <InputForm
+            name="password"
+            label="Senha"
+            error={errors.password}
+            type="password" 
+            // {...register('password')}
+            {...register('password')}
+          />
         </Stack>
-        <Button type="submit" mt={8} colorScheme="teal">Entrar</Button>
+       <Button
+          type="submit"
+          mt={8}
+          colorScheme="teal"
+          isLoading={formState.isSubmitting}
+          >
+            Entrar
+          </Button >
       </Flex>
     </Flex>
   )
