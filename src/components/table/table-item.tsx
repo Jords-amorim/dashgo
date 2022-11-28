@@ -7,7 +7,8 @@ import {
     Tbody,
     Td,
     Text,
-    Tr
+    Tr,
+    useBreakpointValue
 } from '@chakra-ui/react'
 
 import { RiPencilLine } from 'react-icons/ri'
@@ -18,10 +19,14 @@ interface TableItemProps {
 }
 
 export default function TableItem({ userName, registrationDate }: TableItemProps) {
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        sm: true,
+    })
     return (
         <Tbody>
             <Tr>
-                <Td px="6">
+                <Td px={["2","6"]}>
                     <Checkbox colorScheme="teal" />
                 </Td>
                 <Td>
@@ -29,11 +34,13 @@ export default function TableItem({ userName, registrationDate }: TableItemProps
                         {userName}
                     </Text>
                 </Td>
-                <Td>
-                    <Text>
-                        {registrationDate}
-                    </Text>
-                </Td>
+                {isWideVersion ? (
+                     <Td>
+                     <Text>
+                         {registrationDate}
+                     </Text>
+                 </Td>
+                ) : null}
                 <Td>
                     <Button
                         // as="a"

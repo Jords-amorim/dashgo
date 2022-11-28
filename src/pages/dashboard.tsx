@@ -31,7 +31,7 @@ export default function Dashboard() {
             gap="4"
             minChildWidth="320px"
           >
-            <Box p="8" bg="gray.800" borderRadius={8}>
+            <Box p={["6","8"]} bg="gray.800" borderRadius={8}>
               <Text mb="4">Inscritos da Semana</Text>
               <Chart
                   type="area"
@@ -40,7 +40,7 @@ export default function Dashboard() {
                   series={series} 
                 />
             </Box>
-            <Box p="8" bg="gray.800" borderRadius={8}>
+            <Box p={["6","8"]} bg="gray.800" borderRadius={8}>
               <Text mb="4">Taxa de abertura</Text>
               <Chart
                 type="area"
