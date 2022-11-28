@@ -3,17 +3,11 @@ import React from 'react'
 import { 
     Box, 
     Button,
-    Checkbox, 
     Divider, 
     Flex, 
     Heading, 
-    Icon, 
+    HStack, 
     SimpleGrid, 
-    Table, 
-    Tbody, 
-    Td, Th, 
-    Thead, 
-    Tr, 
     VStack
   } from '@chakra-ui/react'
 import Header from '../../components/header'
@@ -45,9 +39,11 @@ export default function Criar() {
                 <InputForm name="password-confirmation" label="Confirmar Senha" type="email"/>
             </SimpleGrid>
         </VStack>
-        <Flex mt="8" justify="flex-end" gap="8">
+        <Flex mt="8" justify="flex-end">
+          <HStack spacing="4">
             <Button as="a" colorScheme="whiteAlpha" href="/usuarios">Cancelar</Button>
             <Button colorScheme="teal" w="24">Salvar</Button>
+          </HStack>
         </Flex>
       </Box>
       

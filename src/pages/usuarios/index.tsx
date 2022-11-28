@@ -15,6 +15,8 @@ import {
 import SideBar from '../../components/side-bar'
 import Header from '../../components/header'
 import { RiAddCircleFill, RiAddLine, RiPencilLine } from 'react-icons/ri'
+import TableItem from './table-item'
+import Pagination from '../../components/pagination'
 
 export default function Usuarios() {
   return (
@@ -29,23 +31,27 @@ export default function Usuarios() {
         >
           <SideBar />
           <Box flex="1" borderRadius={8} bg="gray.800" p="8">
+            
+            {/* Cabeçalho Listagem */}
             <Flex mb="8" justify="space-between" align="center">
               <Heading size="lg" fontWeight="normal">
                 Usuários
               </Heading>
              <Button
                 as="a"
-                colorScheme="teal"
-                leftIcon={<Icon
-                as={RiAddLine}
-                fontSize={20}/>}
-                _hover={{cursor: "pointer"}}
                 href="usuarios/criar"
+                leftIcon={<Icon
+                  as={RiAddLine}
+                  fontSize={20}/>}
+                  _hover={{cursor: "pointer"}}
+                  size="sm"
+                  colorScheme="teal"
               >
                 Criar Usuário
               </Button>
             </Flex>
-
+            
+            {/* Listagem de usuários */}
             <Table colorScheme="whiteAlpha">
               <Thead>
                 <Tr>
@@ -61,32 +67,14 @@ export default function Usuarios() {
                   <Th w={4} />
                 </Tr>
               </Thead>
-              <Tbody>
-                <Tr>
-                  <Td px="6">
-                    <Checkbox  colorScheme="teal"/>
-                  </Td>
-                  <Td>
-                    Joane Alves
-                  </Td>
-                  <Td>
-                    23.11.2022
-                  </Td>
-                  <Td>
-                  <Button
-                    as="a"
-                    colorScheme="blue"
-                    leftIcon={<Icon
-                    as={RiPencilLine}
-                    fontSize={18}/>}
-                    _hover={{cursor: "pointer"}}
-                  >
-                    Editar
-                  </Button>
-                  </Td>
-                </Tr>
-              </Tbody>
+
+              <TableItem userName="Joane Alves" registrationDate="23.11.2022"/>
+              <TableItem userName="Jords Amorim" registrationDate="25.11.2022"/>
             </Table>
+
+            {/* Paginação */}
+            <Pagination />
+
           </Box>
         </Flex>
     </Flex>
