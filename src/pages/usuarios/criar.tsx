@@ -63,20 +63,18 @@ export default function Criar() {
         bg="gray.800"
         p={["4","8"]}
         as="form"
-        onSubmit={handleSubmit(handleCreateUser)}
+        onSubmit={handleSubmit(handleCreateUser as any )}
       >
         <Heading size="lg" fontWeight="normal">Criar Usuário</Heading>
         <Divider my="2" borderColor="teal.500" />
         <VStack spacing="8">
             <SimpleGrid minChildWidth="240px" spacing="8" w="100%">
                 <InputForm
-                  name="name"
                   label="Nome Completo"
                   error={errors.name}
                   {...register('name')} 
                 />
                 <InputForm
-                  name="email"
                   label="E-mail"
                   type="email"
                   error={errors.email}
@@ -85,14 +83,12 @@ export default function Criar() {
             </SimpleGrid>
             <SimpleGrid minChildWidth="240px" spacing="8" w="100%">
                <InputForm
-                  name="password"
                   label="Senha"
                   type="password"
                   error={errors.password}
                   {...register('password')} 
                 />
                 <InputForm
-                  name="password_confirmation"
                   label="Confirmar Senha"
                   type="password"
                   error={errors.password_confirmation} 
